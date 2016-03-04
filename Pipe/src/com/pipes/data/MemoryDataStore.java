@@ -66,7 +66,7 @@ public class MemoryDataStore implements IDataStore {
 	public Pipe createPipe(long userId, String contactMetaData, String token, String properties) {
 		Handle neededHandle = null;
 		for (Handle handle : handles.values()) {
-			if (token.equals(handle.getToken())) {
+			if (handle.isActive() && token.equals(handle.getToken())) {
 				neededHandle = handle;
 				break;
 			}
@@ -81,6 +81,7 @@ public class MemoryDataStore implements IDataStore {
 		// create pipe
 		Pipe pipe = new Pipe(pipeIdGen.getAndIncrement(), userId, neededHandle.getUserId(), newProperties);
 		pipes.put(pipe.getPipeId(), pipe);
+		neededHandle.useHandle();
 
 		// create and add contacts;
 		Random r = new Random(System.currentTimeMillis());

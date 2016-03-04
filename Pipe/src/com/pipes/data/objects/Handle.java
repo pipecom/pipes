@@ -57,4 +57,11 @@ public class Handle {
 		return token;
 	}
 
+	public boolean isActive() {
+		return (properties == null || !properties.contains("used"));
+	}
+
+	public void useHandle() {
+		properties = "used";
+	}
 }

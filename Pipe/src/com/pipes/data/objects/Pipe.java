@@ -1,5 +1,11 @@
 package com.pipes.data.objects;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Pipe {
 
 	private final long pipeId;
@@ -28,6 +34,11 @@ public class Pipe {
 
 	public long getUser2() {
 		return user2;
+	}
+
+	@SuppressWarnings("unused")
+	private Pipe() {
+		this(-1, -1, -1, null);
 	}
 
 	public Pipe(long pipeId, long user1, long user2, String properties) {
